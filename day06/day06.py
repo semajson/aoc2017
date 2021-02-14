@@ -61,7 +61,25 @@ def part1_solve(banks):
     return cycles
 
 
+def part1_solve_set(banks):
+    banks = banks.copy()
+    print(banks)
+    seen_banks = set()
+    cycles = 0
+    while tuple(banks) not in seen_banks:
+        cycles += 1
+        seen_banks.add(tuple(banks))
+
+        # Find the largest element (if tie, get first) and
+        # redistribute its blocks
+        max_value_index = banks.index(max(banks))
+        redistribute_blocks(banks, max_value_index)
+
+    return cycles
+
+
 def part2_solve(banks):
+    banks = banks.copy()
     print(banks)
     seen_banks = []
     cycles = 0
@@ -80,8 +98,10 @@ def part2_solve(banks):
 
 if __name__ == "__main__":
 
-    test_input = get_input(PATH + "test_input")
-    print(part2_solve(test_input))
+    real_input = get_input(PATH + "real_input")
+    time_algo(part1_solve, real_input)
+    # print(part1_solve(real_input))
 
     real_input = get_input(PATH + "real_input")
-    print(part2_solve(real_input))
+    time_algo(part1_solve_set, real_input)
+    print(part1_solve(real_input))
