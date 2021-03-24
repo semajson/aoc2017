@@ -24,6 +24,16 @@ def part1_solve(input):
     sum = 0
 
     for row in input:
+        sum += max(row) - min(row)
+
+    return sum
+
+
+# Part 2
+def part2_solve(input):
+    sum = 0
+
+    for row in input:
         row.sort()
 
         for index, value in enumerate(row):
@@ -40,17 +50,13 @@ def part1_solve(input):
     return sum
 
 
-# Part 2
-def part2_solve(input):
-    pass
-
-
 if __name__ == "__main__":
-    test_input = get_input(PATH + "test_input")
+    # test_input = get_input(PATH + "test_input")
     # print(test_input)
 
-    print(part1_solve(test_input))
+    # print(part1_solve(test_input))
 
     real_input = get_input(PATH + "real_input")
-    # print(real_input)
+    print(real_input)
     print(part1_solve(real_input))
+    print(part2_solve(real_input))
